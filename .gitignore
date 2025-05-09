@@ -1,0 +1,30 @@
+# Node
+node_modules/
+logs.txt
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+venv/
+
+# Docker
+*.tar
+*.pid
+
+
+# Bot sessions
+bot_sessions/
+
+# QR generado
+*.png
+
+# IDE/editor config
+.vscode/
+.idea/
+
+# Otros
+.DS_Store
+.DS_Store
