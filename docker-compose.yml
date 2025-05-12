@@ -1,0 +1,27 @@
+services:
+  ia-api:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: ia-api/Dockerfile
+    container_name: ia-api
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  bot:
+    platform: linux/amd64
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    container_name: whatsapp-bot
+    depends_on:
+      - ia-api
+    volumes:
+      - ./bot:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - API_URL=http://ia-api:8000/responder

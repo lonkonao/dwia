@@ -1,0 +1,33 @@
+# Node
+node_modules/
+logs.txt
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+venv/
+
+# Docker
+*.tar
+*.pid
+
+# Llama.cpp: ignora todo excepto binario y modelo
+llama.cpp/*
+!llama.cpp/build/bin/
+!llama.cpp/build/bin/llama-cli
+!llama.cpp/models/
+!llama.cpp/models/mistral-7b-instruct-v0.1.Q4_K_M.gguf
+
+# Bot sessions y QR
+bot_sessions/
+*.png
+
+# IDE/editor config
+.vscode/
+.idea/
+
+# Otros
+.DS_Store
