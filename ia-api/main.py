@@ -43,7 +43,7 @@ def llamar_llama_cpp(prompt: str) -> str:
             "./llama-cli",
             "-m", MODEL_PATH,
             "-f", tmp.name,
-            "--n-predict", "512",
+            "--n-predict", "64",
             "--temp", "0.7",
             "--top-p", "0.9",
         ]
@@ -59,6 +59,9 @@ def llamar_llama_cpp(prompt: str) -> str:
         # Buscar desde la última aparición de la pregunta real
         bloques = salida.strip().split("Pregunta:")
         ultima_pregunta = bloques[-1] if len(bloques) > 1 else salida
+        print("========== SALIDA DEL MODELO ==========")
+        print(salida)
+        print("=======================================")
 
         # Extraer desde "Respuesta:"
         respuesta_match = re.search(r"Respuesta:\s*(.*)", ultima_pregunta, re.DOTALL)
@@ -83,5 +86,8 @@ def llamar_llama_cpp(prompt: str) -> str:
 @app.post("/responder")
 def responder(data: Consulta):
     prompt = construir_prompt(data.pregunta)
+    print("======= PROMPT ENVIADO =======")
+    print(prompt)
+
     respuesta = llamar_llama_cpp(prompt)
     return {"respuesta": respuesta}
